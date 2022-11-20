@@ -17,15 +17,14 @@ class Search {
   String totalResults;
   String response;
 
-  factory Search.fromJson(Map<String, dynamic> json) => Movie(
-        search: List<Movie>.from(
-            json["Search"].map((x) => SearchElement.fromJson(x))),
+  factory Search.fromJson(Map<String, dynamic> json) => Search(
+        movies: List<Movie>.from(json["Search"].map((x) => Movie.fromJson(x))),
         totalResults: json["totalResults"],
         response: json["Response"],
       );
 
   Map<String, dynamic> toJson() => {
-        "Search": List<dynamic>.from(search.map((x) => x.toJson())),
+        "Search": List<dynamic>.from(movies.map((x) => x.toJson())),
         "totalResults": totalResults,
         "Response": response,
       };
