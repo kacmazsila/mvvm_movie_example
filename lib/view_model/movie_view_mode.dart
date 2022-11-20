@@ -20,12 +20,14 @@ class MovieViewModel with ChangeNotifier {
 
   set state(MovieState state) {
     _state = state;
+
     notifyListeners();
   }
 
   Future<List<Movie>?> searchMovie() async {
     try {
       state = MovieState.BUSY;
+      //await Future.delayed(Duration(seconds: 10));
       movieList = await WebService().searchMovie();
       state = MovieState.IDLE;
       return movieList;
